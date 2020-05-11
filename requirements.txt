@@ -1,0 +1,11 @@
+numpy
+flask
+nltk
+pandas
+gunicorn
+Flask-WTF
+Flask-Table
+flask-heroku
+flask-cors
+wordcloud
+youtube_transcript_api

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <link rel="shorcut icon" href="{{url_for('static',filename='icon.ico')}}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>    
+        <div class="centered">
+            <h1>Youtube Toxicity review</h1>
+
+            <form id="form-file" method="POST" action=""> 
+                <p>
+                    Hackathon submission for <a href="https://responsible-ai.devpost.com/">TF 2.2 Challenge: Building AI Responsibly</a> <br>
+                    This page uses the <a href="https://github.com/tensorflow/tfjs-models/tree/master/toxicity">Toxicity classifier </a> 
+                    To give insights on a Youtube videos<br>
+                    For now working on english videos that have closed captions.<br>
+                    Please be patient, it takes a while to load the tfjs results😓
+                </p>     
+                {{ form.hidden_tag() }}
+                <div class="control-center">  
+                    <label id="inputLabel" for="file">Paste Video URL →</label>
+                    {{ form.video(class="control-center") }}
+                </div>
+                <div class="control-center">
+                    {{ form.submit(class="control-center")}}
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Favicon -->
+    <link rel="shorcut icon" href="{{url_for('static',filename='icon.ico')}}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <style>
+      .loader {
+        border: 16px solid #FFF9FB;
+        border-radius: 50%;
+        border-top: 16px solid #ff6f00;
+        border-right: 16px solid #FFF9FB;
+        border-bottom: 16px solid #616161;
+  
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite; /* Safari */
+        animation: spin 2s linear infinite;
+      }   
+      /* Safari */
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      </style> 
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Home</a>
+        </div>
+      </nav>
+    </header>
+    <main role="main" class="container">    
+      <div class="row">
+        <div class="col-md-6" style="height: 800px; overflow-y: scroll;" id="transcription">
+          <h4 style="text-align:center">Transcription</h4>
+          {{data}}
+        </div> 
+        <div id="analysis" class="col-md-6">
+          <h3 style="text-align:center">Analysis</h3>
+          <div id="loader" style="margin-left: auto; margin-right: auto;" class="loader"></div>
+            <ul id="list">
+              <li style="color:#eb34df">identity attack:0</li>
+              <li style="color:#eb7617">insult:0</li>
+              <li style="color:#8f8c89">obscene:0</li>
+              <li style="color:#02ab13">severe toxicity:0</li>
+              <li style="color:#0229ab">sexual explicit:0</li>
+              <li style="color:#e34fbe">threat:0</li>
+              <li style="color:#34eb65">toxicity:0</li>
+            </ul>
+        <div>
+          <img src="static/word_cloud.png" alt="Word Cloud" style="width:300px;height:300x;">
+        </div>
+      </div>
+      </div>
+    </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/toxicity"></script>
+    <script>
+      function modify_dom (item){
+        var list = document.getElementById("list");
+        var list_text = list.children[item].textContent.split(":");
+        var text = list_text[0];
+        var val = parseInt(list_text[1]) + 1;
+        list.children[item].textContent = text + ":" + val;        
+      }
+    </script>
+    <script>
+      //Predictions
+      const threshold = 0.9;
+    toxicity.load(threshold).then(model => {
+      var text = document.getElementById("transcription").textContent;
+    const split = text.split(/\r?\n/);                      
+    for (var i=0; i<split.length; i++){
+      if (split[i] !== ""){      
+        model.classify(split[i]).then(predictions =>{
+        for(let p=0; p<predictions.length;p++)            {
+            if(predictions[p].results[0].match===true) {
+                modify_dom(p);
+                console.log(p);      
+            }
+        }
+        });
+      }
+    }
+    var loader = document.getElementById("loader");
+        loader.remove();
+  });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

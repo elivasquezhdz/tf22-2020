@@ -1,0 +1,111 @@
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centered_big {
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    transform: translate(-25%, -25%);
+}
+
+.centered h1 {
+    background: #616161;
+    color: #fff9fb;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 0;
+    border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+}
+
+.centered form {
+    padding: 30px;
+    background: white;
+    color: #616161;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(138, 138, 138, 0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(138, 138, 138, 0.75);
+    box-shadow: 0px 0px 5px 0px rgba(138, 138, 138, 0.75);
+
+    border-radius: 0px 0px 10px 10px;
+    -moz-border-radius: 0px 0px 10px 10px;
+    -webkit-border-radius: 0px 0px 10px 10px;
+}
+
+.centered form .control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.centered form .control-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+.centered form .control-center #file {
+    margin-left: 0px;
+    background-color: #4b88a2;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.centered form input {
+    outline: none;
+    border: 1px solid #4b88a2;
+    line-height: 25px;
+    padding: 5px;  
+    font-size: 14px;
+    color: #425066;  
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+#file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+#inputLabel {
+    background-color: #ff6f00;
+    color: #fff9fb;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+#submit {
+    background: #4b88a2;
+    border: none;
+    color: #fff9fb;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    text-decoration: none;
+}
+
+body {
+    background: #ff6f00;
+}
