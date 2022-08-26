@@ -7,4 +7,4 @@ It uses the <a href="https://github.com/tensorflow/tfjs-models/tree/master/toxic
 To give insights on a Youtube videos. For now working on english videos that have closed captions.<br>
 Please be patient, it takes a while to load the tfjs results😓
 
-To run install all the requirements and run python manage.py or check the <a href = "https://tf22-2020.herokuapp.com/"> live demo</a>
+To run install all the requirements and run python manage.py
